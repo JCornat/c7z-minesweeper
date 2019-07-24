@@ -6,6 +6,28 @@ Quick project for minimal minesweeper component
 
 ## How to use it
 
+Declare in a module :
+
+```
+import { MinesweeperModule } from 'c7z-minesweeper';
+
+...
+
+@NgModule({
+  declarations: [
+    ...
+  ],
+  imports: [
+    ...
+    MinesweeperModule,
+  ],
+})
+export class AppModule {
+  ...
+}
+
+```
+
 Declare in template :
 
 ```
