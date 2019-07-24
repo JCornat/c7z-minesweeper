@@ -1,0 +1,25 @@
+<canvas #canvas width="500" height="500" style="border: 1px solid black;"></canvas>
+
+<ng-container *ngIf="success">
+  <div class="message" (click)="initializeGame($event)">
+    <div class="title">
+      Bravo !
+    </div>
+
+    <div class="description">
+      Cliquez pour recommencer
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="fail">
+  <div class="message" (click)="initializeGame($event)">
+    <div class="title">
+      Boom !
+    </div>
+
+    <div class="description">
+      Cliquez pour recommencer
+    </div>
+  </div>
+</ng-container>

@@ -12,42 +12,6 @@
   </div>
 </form>
 
-<canvas #canvas width="500" height="500" style="border: 1px solid black;"></canvas>
-
-<ng-container *ngIf="!initialized">
-  <div (click)="initializeGame($event)">
-    <div>
-      Démineur
-    </div>
-
-    <div>
-      Cliquez pour recommencer
-    </div>
-  </div>
-</ng-container>
-
-<ng-container *ngIf="success">
-  <div (click)="initializeGame($event)">
-    <div>
-      Bravo !
-    </div>
-
-    <div>
-      Cliquez pour recommencer
-    </div>
-  </div>
-</ng-container>
-
-<ng-container *ngIf="fail">
-  <div (click)="initializeGame($event)">
-    <div>
-      Boom !
-    </div>
-
-    <div>
-      Cliquez pour recommencer
-    </div>
-  </div>
-</ng-container>
+<c7z-minesweeper [fieldWidth]="fieldWidth" [fieldHeight]="fieldHeight" [cellWidth]="cellWidth" [cellHeight]="cellHeight"></c7z-minesweeper>
 
 <router-outlet></router-outlet>

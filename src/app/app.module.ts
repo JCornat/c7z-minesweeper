@@ -4,10 +4,12 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MinesweeperComponent } from './minesweeper/minesweeper.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MinesweeperComponent
   ],
   imports: [
     BrowserModule,
