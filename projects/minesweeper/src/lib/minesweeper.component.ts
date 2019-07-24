@@ -3,7 +3,7 @@ import { Component, Input, ViewChild } from '@angular/core';
 @Component({
   selector: 'c7z-minesweeper',
   templateUrl: './minesweeper.component.html',
-  styleUrls: ['./minesweeper.component.scss']
+  styleUrls: ['./minesweeper.component.scss'],
 })
 export class MinesweeperComponent {
   @ViewChild('canvas', {static: false}) set canvas(data: any) {
@@ -326,6 +326,26 @@ export class MinesweeperComponent {
       const eastCell = this.playground[cell.x + 1][cell.y];
       this.discoverAdjacentCells(eastCell);
     }
+
+    if (this.playground[cell.x + 1] && this.playground[cell.x + 1][cell.y + 1]) {
+      const southEastCell = this.playground[cell.x + 1][cell.y + 1];
+      this.discoverAdjacentCells(southEastCell);
+    }
+
+    if (this.playground[cell.x - 1] && this.playground[cell.x - 1][cell.y + 1]) {
+      const southWestCell = this.playground[cell.x - 1][cell.y + 1];
+      this.discoverAdjacentCells(southWestCell);
+    }
+
+    if (this.playground[cell.x - 1] && this.playground[cell.x - 1][cell.y - 1]) {
+      const northEastCell = this.playground[cell.x - 1][cell.y - 1];
+      this.discoverAdjacentCells(northEastCell);
+    }
+
+    if (this.playground[cell.x + 1] && this.playground[cell.x + 1][cell.y - 1]) {
+      const northWestCell = this.playground[cell.x + 1][cell.y - 1];
+      this.discoverAdjacentCells(northWestCell);
+    }
   }
 
   public isGameOver(): boolean {
@@ -342,3 +362,4 @@ export class MinesweeperComponent {
     return true;
   }
 }
+
