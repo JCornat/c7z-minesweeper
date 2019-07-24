@@ -1,24 +1,57 @@
-# Minesweeper
+# C7z Minesweeper
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.3.
+Quick project for minimal minesweeper component
 
-## Code scaffolding
+![](https://raw.githubusercontent.com/JCornat/c7z-minesweeper/master/02.png)
 
-Run `ng generate component component-name --project minesweeper` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project minesweeper`.
-> Note: Don't forget to add `--project minesweeper` or else it will be added to the default project in your `angular.json` file. 
+## How to use it
 
-## Build
+Declare in a module :
 
-Run `ng build minesweeper` to build the project. The build artifacts will be stored in the `dist/` directory.
+```
+import { MinesweeperModule } from 'c7z-minesweeper';
 
-## Publishing
+...
 
-After building your library with `ng build minesweeper`, go to the dist folder `cd dist/minesweeper` and run `npm publish`.
+@NgModule({
+  declarations: [
+    ...
+  ],
+  imports: [
+    ...
+    MinesweeperModule,
+  ],
+})
+export class AppModule {
+  ...
+}
 
-## Running unit tests
+```
 
-Run `ng test minesweeper` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Declare in template :
 
-## Further help
+```
+<c7z-minesweeper></c7z-minesweeper>
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+or  
+
+```
+<c7z-minesweeper [fieldWidth]="10" [fieldHeight]="10" [cellWidth]="40" [cellHeight]="40"></c7z-minesweeper>
+```
+
+## Default values
+
+Field size : 10 * 10  
+Cell size : 40 * 40
+
+## Screenshots
+
+Game lost  
+![](https://raw.githubusercontent.com/JCornat/c7z-minesweeper/master/02-2.png)
+
+Big grid  
+![](https://raw.githubusercontent.com/JCornat/c7z-minesweeper/master/01.png)
+
+Small grid  
+![](https://raw.githubusercontent.com/JCornat/c7z-minesweeper/master/03.png)
