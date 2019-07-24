@@ -1,27 +1,35 @@
-# Minesweeper
+# C7z Minesweeper
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.6.
+Quick project for minimal minesweeper component
 
-## Development server
+![](02.png)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## How to use it
 
-## Code scaffolding
+Declare in template :
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```
+<c7z-minesweeper></c7z-minesweeper>
+```
 
-## Build
+or  
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```
+<c7z-minesweeper [fieldWidth]="10" [fieldHeight]="10" [cellWidth]="40" [cellHeight]="40"></c7z-minesweeper>
+```
 
-## Running unit tests
+## Default values
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Field size : 10 * 10  
+Cell size : 40 * 40
 
-## Running end-to-end tests
+## Screenshots
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Game lost  
+![](02-2.png)
 
-## Further help
+Big grid  
+![](01.png)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Small grid  
+![](03.png)
