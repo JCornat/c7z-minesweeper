@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -6,11 +6,14 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
   @ViewChild('canvas', {static: false}) set canvas(data: any) {
     this._canvas = data;
-    this.initializeGame();
   };
+
+  public initialized: boolean;
+  public success: boolean;
+  public fail: boolean;
 
   public playground: any;
   public _canvas: any;
@@ -29,12 +32,7 @@ export class AppComponent implements OnInit {
     //
   }
 
-
   public ngOnInit(): void {
-    this.init();
-  }
-
-  public init(): void {
     this.fieldWidth = 10;
     this.fieldHeight = 10;
     this.cellHeight = 40;
@@ -46,6 +44,14 @@ export class AppComponent implements OnInit {
       cellHeight: this.cellHeight,
       cellWidth: this.cellWidth,
     });
+  }
+
+  public ngAfterViewInit(): void {
+    this.init();
+  }
+
+  public init(): void {
+    this.resizeCanvas();
 
     this.myForm.valueChanges.subscribe(() => {
       this.fieldWidth = this.myForm.get('fieldWidth').value;
@@ -53,8 +59,14 @@ export class AppComponent implements OnInit {
       this.cellHeight = this.myForm.get('cellHeight').value;
       this.cellWidth = this.myForm.get('cellWidth').value;
 
+      this.resizeCanvas();
       this.initializeGame();
     });
+  }
+
+  public resizeCanvas(): void {
+    this._canvas.nativeElement.width = this.fieldWidth * this.cellWidth;
+    this._canvas.nativeElement.height = this.fieldHeight * this.cellHeight;
   }
 
   public generateField(options: { width: number, height: number }): boolean[][] {
@@ -124,7 +136,16 @@ export class AppComponent implements OnInit {
     return counter;
   }
 
-  public initializeGame(): void {
+  public initializeGame(event?: Event): void {
+    if (event instanceof Event) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
+
+    this.fail = false;
+    this.success = false;
+    this.initialized = true;
+
     const width = this.fieldWidth;
     const height = this.fieldHeight;
     const options = {
@@ -132,9 +153,8 @@ export class AppComponent implements OnInit {
       height,
     };
 
+    console.log(options);
     this.playground = this.buildCells(options);
-    this._canvas.nativeElement.width = this.fieldWidth * this.cellWidth;
-    this._canvas.nativeElement.height = this.fieldHeight * this.cellHeight;
     this.context = this._canvas.nativeElement.getContext('2d');
 
     this._canvas.nativeElement.onmousemove = this.getMousePosition.bind(this);
@@ -161,12 +181,17 @@ export class AppComponent implements OnInit {
     const cell = this.getCellByPoint(point, this.playground);
 
     if (cell.isMine) {
-      this.initializeGame();
+      this.fail = true;
       return;
     }
 
     this.discoverAdjacentCells(cell);
     cell.discover = true;
+
+    const gameOver = this.isGameOver();
+    if (gameOver) {
+      this.success = true;
+    }
   }
 
   public gameLoop(): void {
@@ -284,5 +309,19 @@ export class AppComponent implements OnInit {
       const eastCell = this.playground[cell.x + 1][cell.y];
       this.discoverAdjacentCells(eastCell);
     }
+  }
+
+  public isGameOver(): boolean {
+    for (const row of this.playground) {
+      for (const cell of row) {
+        if (cell.discover || cell.isMine) {
+          continue;
+        }
+
+        return false;
+      }
+    }
+
+    return true;
   }
 }
