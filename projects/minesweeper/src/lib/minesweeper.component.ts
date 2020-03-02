@@ -6,7 +6,7 @@ import { Component, Input, ViewChild } from '@angular/core';
   styleUrls: ['./minesweeper.component.scss'],
 })
 export class MinesweeperComponent {
-  @ViewChild('canvas', {static: false}) set canvas(data: any) {
+  @ViewChild('canvas') set canvas(data: any) {
     if (!data) {
       return;
     }
