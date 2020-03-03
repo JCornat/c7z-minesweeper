@@ -16,31 +16,26 @@ export class MinesweeperComponent {
     }
 
     this._canvas = data;
-    console.log('init', data);
     this.init();
   };
 
   @Input('cellWidth') set cellWidth(data: number) {
     this._cellWidth = data;
-    console.log('init1', data);
     this.init();
   };
 
   @Input('cellHeight') set cellHeight(data: number) {
     this._cellHeight = data;
-    console.log('init2', data);
     this.init();
   };
 
   @Input('fieldWidth') set fieldWidth(data: number) {
     this._fieldWidth = data;
-    console.log('init3', data);
     this.init();
   };
 
   @Input('fieldHeight') set fieldHeight(data: number) {
     this._fieldHeight = data;
-    console.log('init4', data);
     this.init();
   };
 
@@ -65,7 +60,6 @@ export class MinesweeperComponent {
   }
 
   public initializeDefaultVariables(): void {
-    console.log('ngOnInit');
     this._fieldWidth = 10;
     this._fieldHeight = 10;
     this._cellHeight = 40;
@@ -77,7 +71,6 @@ export class MinesweeperComponent {
       return;
     }
 
-    console.log('initx');
     this.resizeCanvas();
     this.initializeGame();
   }

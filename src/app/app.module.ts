@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MinesweeperModule } from 'c7z-minesweeper';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { MinesweeperModule } from '../../projects/minesweeper/src/lib/minesweeper.module';
 
 @NgModule({
   declarations: [
