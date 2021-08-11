@@ -105,11 +105,10 @@ export class MinesweeperComponent {
       const row = [];
       for (let j = 0; j < options.height; j++) {
         const isMine = field[i][j];
-        const cell = {
+        const cell: { x: number, y: number, isMine: boolean, counter?: number } = {
           x: i,
           y: j,
           isMine,
-          counter: null,
         };
 
         if (!isMine) {
@@ -173,7 +172,7 @@ export class MinesweeperComponent {
     this.gameLoop();
   }
 
-  public getMousePosition(event): void {
+  public getMousePosition(event: any): void {
     const rect = this._canvas.nativeElement.getBoundingClientRect();
     this.mousePosition = {
       x: event.clientX - rect.left,
@@ -181,7 +180,7 @@ export class MinesweeperComponent {
     };
   }
 
-  public clickCell(event): void {
+  public clickCell(event: any): void {
     const rect = this._canvas.nativeElement.getBoundingClientRect();
     const point = {
       x: event.clientX - rect.left,
@@ -215,10 +214,10 @@ export class MinesweeperComponent {
       for (let j = 0; j < this.playground[i].length; j++) {
         const cell = this.playground[i][j];
 
-        this.context.fillStyle = "#e0e0e0";
+        this.context.fillStyle = '#e0e0e0';
 
         if (cell.discover) {
-          this.context.fillStyle = "#FFFFFF";
+          this.context.fillStyle = '#FFFFFF';
         }
 
         this.context.fillRect(i * this._cellWidth, j * this._cellHeight, this._cellWidth, this._cellHeight);
@@ -233,19 +232,19 @@ export class MinesweeperComponent {
             this.context.font = `${this._cellHeight / 2}px Roboto`;
 
             if (cell.counter === 1) {
-              this.context.fillStyle = "#00e676";
+              this.context.fillStyle = '#00e676';
             } else if (cell.counter === 2) {
-              this.context.fillStyle = "#ff9100";
+              this.context.fillStyle = '#ff9100';
             } else if (cell.counter === 3) {
-              this.context.fillStyle = "#ff3d00";
+              this.context.fillStyle = '#ff3d00';
             } else if (cell.counter === 4) {
-              this.context.fillStyle = "#ff1744";
+              this.context.fillStyle = '#ff1744';
             } else if (cell.counter === 5) {
-              this.context.fillStyle = "#d500f9";
+              this.context.fillStyle = '#d500f9';
             } else if (cell.counter === 6) {
-              this.context.fillStyle = "#651fff";
+              this.context.fillStyle = '#651fff';
             } else if (cell.counter === 7) {
-              this.context.fillStyle = "#3d5afe";
+              this.context.fillStyle = '#3d5afe';
             }
 
             this.context.fillText(cell.counter, i * this._cellWidth - 7 + this._cellWidth / 2, j * this._cellHeight + 8 + this._cellHeight / 2);

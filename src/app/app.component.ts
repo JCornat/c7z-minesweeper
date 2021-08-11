@@ -32,10 +32,10 @@ export class AppComponent implements OnInit {
     });
 
     this.myForm.valueChanges.subscribe(() => {
-      this.fieldWidth = this.myForm.get('fieldWidth').value;
-      this.fieldHeight = this.myForm.get('fieldHeight').value;
-      this.cellHeight = this.myForm.get('cellHeight').value;
-      this.cellWidth = this.myForm.get('cellWidth').value;
+      this.fieldWidth = this.myForm.get('fieldWidth')?.value;
+      this.fieldHeight = this.myForm.get('fieldHeight')?.value;
+      this.cellHeight = this.myForm.get('cellHeight')?.value;
+      this.cellWidth = this.myForm.get('cellWidth')?.value;
     });
   }
 }
